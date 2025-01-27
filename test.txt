@@ -1,0 +1,6 @@
+<div class = 'etask',id = '"+crt+"'>
+    <div id='"+crt+"'>
+        "+value+"
+    </div>
+    <button onclick='del_task("+crt+")'>delete</button>
+</div>
