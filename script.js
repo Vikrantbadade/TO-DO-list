@@ -1,27 +1,46 @@
-// const newEl = document.createElement("div")
-// newEl.innerHTML = "fuck you"
-// document.querySelector("body").appendChild(newEl)
-// const del = document.getElementById("fake")
-// del.parentNode.removeChild(del)
 let crt = 1;
 
-function del_task(index){
-    const del = document.getElementById(index);
-    del.parentNode.removeChild(del)
-
+function del_task(index) {
+    const task = document.getElementById(index);
+    if (task) {
+        task.parentNode.removeChild(task); // Safely remove the task element.
+    }
 }
 
-function add_task(){
-    const inputEl = document.querySelector("input")
-    const value = inputEl.value
+function add_task() {
+    const inputEl = document.querySelector("input");
+    const value = inputEl.value.trim(); // Remove unnecessary whitespace.
 
+    // Prevent adding empty tasks
+    if (!value) {
+        alert("Please enter a task!");
+        return;
+    }
 
+    // Increment the unique ID counter
+    crt++;
 
-    const NewEl = document.createElement("div");
-    
-    crt = crt + 1;
+    // Create the task container
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "etask";
+    taskDiv.id = crt;
 
-    NewEl.innerHTML = "<div class = 'etask'id = '"+crt+"'><div id='"+crt+"'>"+value+"</div><button onclick='del_task("+crt+")'>delete</button></div>"
-    document.getElementById("kal").appendChild(NewEl)
+    // Add task content
+    const taskContent = document.createElement("div");
+    taskContent.textContent = value;
 
+    // Create delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.onclick = () => del_task(crt);
+
+    // Append content and button to the task container
+    taskDiv.appendChild(taskContent);
+    taskDiv.appendChild(deleteBtn);
+
+    // Append task container to the task list
+    document.getElementById("kal").appendChild(taskDiv);
+
+    // Clear the input field
+    inputEl.value = "";
 }

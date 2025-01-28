@@ -1,35 +1,127 @@
-body{
-    background-image: url(digital-art-isolated-house.jpg) ;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('pexels-gabby-k-6373305.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center center;
-}
-#do{
-    color: white;
-    background-color: rgb(18, 18, 20);
-    height: 40px;
-    width: 1340px;
-    margin-top: 500px;
-    font-family:'Times New Roman', Times, serif;
-    border-radius: 12px;
-    text-align: center;
-    line-height: 100px;
-    position: fixed;
-    bottom: 0;
+    background-position: center;
+    position: relative;
+    min-height: 100vh;
 }
 
-button{
-    
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: -1;
 }
-.etask{
+
+h1 {
+    text-align: center;
+    margin: 20px;
     color: white;
-    background-color: rgb(31, 31, 32);
-    height: 40px;
-    width: 1340px;
-    font-family:'Times New Roman', Times, serif;
-    border-radius: 12px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
-#addtask{
-    position:fixed;
+
+/* Task Container */
+#kal {
+    max-width: 600px;
+    margin: 20px auto;
+    background: rgba(50, 50, 50, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+#kal div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: rgb(31, 31, 32);
+    border-radius: 8px;
+}
+
+/* Input and Add Task Button */
+#addask, #do {
+    display: block;
+    margin: 10px auto;
+}
+
+.todo {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    font-size: 1rem;
+}
+
+.todo:focus {
+    outline: none;
+    border-color: #ddd;
+    background: white;
+}
+
+/* Add Task Button */
+#addask {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(50, 50, 50);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addask:hover {
+    background-color: rgb(70, 70, 70);
+}
+
+/* Delete Button */
+button {
+    color: white;
+    background-color: rgb(220, 20, 60); /* Crimson color for Delete */
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(255, 0, 0); /* Brighter red on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #kal {
+        width: 90%;
+    }
+
+    .todo {
+        width: 70%;
+    }
+
+    button {
+        font-size: 0.8rem;
+    }
 }
