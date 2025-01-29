@@ -1,46 +1,51 @@
-let crt = 1;
+let taskIdCounter = 0;
 
-function del_task(index) {
-    const task = document.getElementById(index);
-    if (task) {
-        task.parentNode.removeChild(task); // Safely remove the task element.
+function delTask(taskId) {
+    const taskEl = document.getElementById(taskId);
+    if (taskEl) {
+        taskEl.classList.add("fade-out");
+        setTimeout(() => taskEl.remove(), 300);
     }
 }
 
-function add_task() {
-    const inputEl = document.querySelector("input");
-    const value = inputEl.value.trim(); // Remove unnecessary whitespace.
+function toggleComplete(taskText) {
+    taskText.classList.toggle("completed");
+}
 
-    // Prevent adding empty tasks
-    if (!value) {
+function addTask() {
+    const inputEl = document.getElementById("task-input");
+    const taskValue = inputEl.value.trim();
+
+    if (!taskValue) {
         alert("Please enter a task!");
         return;
     }
 
-    // Increment the unique ID counter
-    crt++;
+    taskIdCounter++;
 
-    // Create the task container
-    const taskDiv = document.createElement("div");
-    taskDiv.className = "etask";
-    taskDiv.id = crt;
+    // Create task element
+    const taskEl = document.createElement("div");
+    taskEl.className = "task";
+    taskEl.id = `task-${taskIdCounter}`;
 
-    // Add task content
-    const taskContent = document.createElement("div");
-    taskContent.textContent = value;
+    // Task text
+    const taskText = document.createElement("span");
+    taskText.textContent = taskValue;
+    taskText.onclick = () => toggleComplete(taskText);
 
-    // Create delete button
+    // Delete button
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.onclick = () => del_task(crt);
+    deleteBtn.onclick = () => delTask(taskEl.id);
 
-    // Append content and button to the task container
-    taskDiv.appendChild(taskContent);
-    taskDiv.appendChild(deleteBtn);
+    // Append elements
+    taskEl.appendChild(taskText);
+    taskEl.appendChild(deleteBtn);
+    document.getElementById("task-container").appendChild(taskEl);
 
-    // Append task container to the task list
-    document.getElementById("kal").appendChild(taskDiv);
-
-    // Clear the input field
+    // Clear input field
     inputEl.value = "";
 }
+
+// Event listener for add button
+document.getElementById("add-task-btn").addEventListener("click", addTask);

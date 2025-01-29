@@ -1,4 +1,4 @@
-/* General Reset */
+/* General Styling */
 * {
     margin: 0;
     padding: 0;
@@ -6,122 +6,144 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-image: url('pexels-gabby-k-6373305.jpg');
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('') no-repeat center center fixed;
     background-size: cover;
-    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
-    position: relative;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-    z-index: -1;
+    text-align: center;
+    backdrop-filter: blur(3px);
+    padding: 20px;
 }
 
-h1 {
+/* Navbar Styling */
+.navbar {
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* Main Container */
+.main-content {
+    margin-top: 80px;
     text-align: center;
-    margin: 20px;
-    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Heading */
+h1 {
     font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Task Container */
-#kal {
-    max-width: 600px;
-    margin: 20px auto;
-    background: rgba(50, 50, 50, 0.8);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    color: white;
+#task-container {
+    margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
 }
 
-#kal div {
+#task-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#task-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+/* Input and Button Styling */
+.task-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+#add-task-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: #4caf50;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-task-btn:hover {
+    background: #45a049;
+}
+
+/* Task Styling */
+.task {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    background-color: rgb(31, 31, 32);
-    border-radius: 8px;
-}
-
-/* Input and Add Task Button */
-#addask, #do {
-    display: block;
-    margin: 10px auto;
-}
-
-.todo {
-    width: 80%;
+    background: rgba(255, 255, 255, 0.2);
     padding: 10px;
-    margin-right: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.8);
-    color: #333;
-    font-size: 1rem;
+    animation: fadeIn 0.5s;
 }
 
-.todo:focus {
-    outline: none;
-    border-color: #ddd;
-    background: white;
-}
-
-/* Add Task Button */
-#addask {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: rgb(50, 50, 50);
-    border: none;
-    border-radius: 8px;
+.task span {
+    flex-grow: 1;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-#addask:hover {
-    background-color: rgb(70, 70, 70);
+/* Task Completed */
+.completed {
+    text-decoration: line-through;
+    color: lightgray;
 }
 
 /* Delete Button */
-button {
-    color: white;
-    background-color: rgb(220, 20, 60); /* Crimson color for Delete */
+.task button {
+    background: #e74c3c;
     border: none;
-    border-radius: 8px;
     padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
     cursor: pointer;
-    font-size: 0.9rem;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: rgb(255, 0, 0); /* Brighter red on hover */
+.task button:hover {
+    background: #c0392b;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    #kal {
-        width: 90%;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 
-    .todo {
-        width: 70%;
-    }
-
-    button {
-        font-size: 0.8rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
